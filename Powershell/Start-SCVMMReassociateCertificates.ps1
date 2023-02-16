@@ -35,6 +35,11 @@ else
 		Remove-Item 'C:\temp\Each-ManagedHost-SelfSignedCertificate.txt' -Force -Confirm:$false -ErrorAction SilentlyContinue
 	}
 	$ManagedHosts = Get-SCVMHost | Select-Object
+	#Uncomment line 39 thru 42 if you want to target a specific cluster's nodes and comment out line 37 and 43
+	<#
+	$ManagedHosts = Get-SCVMHostCluster -name <ClusterName>
+	$Servers = $ManagedHosts.Nodes.FQDN
+	#>
 	$servers = $Managedhosts.FQDN
 	foreach ($server in $servers)
 	{
